@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05070d" />
+  <meta name="description" content="System.Two — Chapter 2: One Year Later" />
+  <title>System.Two — Chapter 2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+  <div id="particles" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- BOOT -->
+    <section id="bootScreen" class="screen active" aria-label="Boot sequence">
+      <div class="terminal panel">
+        <div class="terminal-bar">
+          <span></span><span></span><span></span>
+          <strong>System.Two.Loader</strong>
+        </div>
+        <pre id="bootLog" aria-live="polite"></pre>
+        <button id="startButton" class="primary hidden">START CHAPTER 2</button>
+      </div>
+    </section>
+
+    <!-- MEMORY ARCHIVE -->
+    <section id="archiveScreen" class="screen" aria-label="Memory Archive">
+      <header class="hud">
+        <div>
+          <div class="eyebrow">SYSTEM.TWO / CHAPTER 2</div>
+          <h1>MEMORY ARCHIVE</h1>
+        </div>
+        <div class="memory-counter">
+          MEMORIES <span id="memoryCount">0</span>/4
+        </div>
+      </header>
+
+      <div id="world" class="world" tabindex="0" aria-label="Game world">
+        <div class="grid-floor"></div>
+        <div id="player" class="player" aria-label="Player">🤖</div>
+
+        <button class="memory-node" data-memory="0" style="left:12%" aria-label="Memory 1">
+          <span>01</span>
+        </button>
+        <button class="memory-node" data-memory="1" style="left:37%" aria-label="Memory 2">
+          <span>02</span>
+        </button>
+        <button class="memory-node" data-memory="2" style="left:63%" aria-label="Memory 3">
+          <span>03</span>
+        </button>
+        <button class="memory-node" data-memory="3" style="left:87%" aria-label="Memory 4">
+          <span>04</span>
+        </button>
+
+        <div class="instruction">
+          ← → / A D to move · touch every memory
+        </div>
+      </div>
+
+      <div class="mobile-controls" aria-label="Mobile controls">
+        <button id="moveLeft" aria-label="Move left">◀</button>
+        <button id="moveRight" aria-label="Move right">▶</button>
+      </div>
+    </section>
+
+    <!-- MEMORY MODAL -->
+    <div id="memoryModal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="memoryLabel" aria-describedby="memoryText">
+      <div class="panel memory-card">
+        <div class="eyebrow" id="memoryLabel">MEMORY #01</div>
+        <p id="memoryText"></p>
+        <button id="closeMemory" class="primary">STORE MEMORY</button>
+      </div>
+    </div>
+
+    <!-- DEBUG ROOM -->
+    <section id="debugScreen" class="screen" aria-label="Debug Room">
+      <div class="vs-window panel">
+        <div class="vs-titlebar">
+          <span>System.Two.sln</span>
+          <span>— Visual Studio Memory Edition</span>
+        </div>
+
+        <div class="vs-body">
+          <aside class="solution-explorer">
+            <strong>Solution Explorer</strong>
+            <p>▾ System.Two</p>
+            <p>&nbsp;&nbsp;▾ Memories</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;01_Birthday.cs</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;02_Smile.cs</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;03_ThreeSongs.cs</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;04_Heart.cs</p>
+            <p>&nbsp;&nbsp;Anniversary.cs</p>
+          </aside>
+
+          <div class="editor">
+            <div class="tab">Anniversary.cs</div>
+            <pre><code><span class="kw">namespace</span> System.Two;
+
+<span class="kw">public static class</span> Anniversary
+{
+    <span class="kw">public static void</span> Build()
+    {
+        <span class="type">int</span> memories = <span class="num">4</span>;
+        <span class="type">bool</span> together = <span class="kw">true</span>;
+
+        <span class="kw">if</span> (memories == <span class="num">4</span> && together)
+        {
+            Console.WriteLine(
+                <span class="str">"Continue."</span>
+            );
+        }
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div id="buildOutput" class="build-output">
+          Ready to build...
+        </div>
+
+        <button id="buildButton" class="primary">▶ BUILD SOLUTION</button>
+      </div>
+    </section>
+
+    <!-- SYSTEM.TWO DIALOGUE -->
+    <section id="dialogueScreen" class="screen" aria-label="System.Two dialogue">
+      <div class="dialogue-scene">
+        <div class="system-two">
+          <div class="boss-name">System.Two</div>
+          <div class="heart-core">💙</div>
+        </div>
+
+        <div class="dialogue-box panel">
+          <p id="dialogueText"></p>
+          <button id="nextDialogue" class="primary">CONTINUE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUZZLE -->
+    <section id="puzzleScreen" class="screen" aria-label=".NET verification puzzle">
+      <div class="puzzle panel">
+        <div class="eyebrow">CALLBACK VERIFICATION</div>
+        <h2>One value survived Chapter 1.</h2>
+
+        <pre class="code-block"><code><span class="kw">var</span> two =
+    Enumerable.Range(<span class="num">1</span>, <span class="num">32</span>)
+        .Where(x => <span class="num">x % 2 == 0</span>)
+        .Count(<span class="num"></span>);
+
+Console.WriteLine(Math.Pow(two<span class="num">, 2</span>));</code></pre>
+
+        <label for="puzzleAnswer">What is the final output?</label>
+        <div class="input-row">
+          <input id="puzzleAnswer" autocomplete="off" inputmode="numeric" />
+          <button id="submitPuzzle" class="primary">COMPILE</button>
+        </div>
+        <p id="puzzleResult" class="result" aria-live="polite"></p>
+
+        <div id="secretTerminal" class="secret-terminal hidden">
+          <div class="separator"></div>
+          <p class="muted">Optional terminal command detected.
+
+			Our Anniversary
+			22/11
+
+			Last time, you wrote something.
+			This time, System.Two is listening...
+			</p>
+          <div class="input-row">
+            <input
+              id="secretCommand"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Type a C# command..."
+            />
+            <button id="runSecret" class="secondary">RUN</button>
+          </div>
+          <p id="secretResult" class="result" aria-live="polite"></p>
+          <button id="continueEnding" class="secondary">CONTINUE WITHOUT COMMAND</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENDING -->
+    <section id="endingScreen" class="screen" aria-label="Ending">
+      <div class="ending panel">
+        <pre id="endingText" aria-live="polite"></pre>
+        <div id="endingActions" class="hidden">
+          <button id="continueButton" class="primary">[ Y ] CONTINUE</button>
+          <button id="replayButton" class="secondary">REPLAY CHAPTER</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="achievement" class="achievement hidden" role="status">
+      <div>🏆 ACHIEVEMENT UNLOCKED</div>
+      <strong id="achievementName"></strong>
+    </div>
+
+    <button id="textToggle" class="text-toggle secondary" aria-label="Show text instantly" aria-pressed="false">TEXT: ANIMATED</button>
+    <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">SOUND: ON</button>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
